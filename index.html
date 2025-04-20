@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ยินดีต้อนรับ</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: white;
+      font-family: 'Kanit', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .message {
+      font-size: 1.5em;
+      color: white;
+      text-align: center;
+      max-width: 90%;
+      padding: 20px;
+      white-space: pre-wrap;
+      overflow: hidden;
+      border-radius: 10px;
+      animation: fadeInText 8s steps(80, end);
+    }
+
+    @keyframes fadeInText {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .text {
+      font-size: 2.5em;
+      text-align: center;
+      margin-bottom: 40px;
+      color: hotpink;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-shadow: 0 0 10px hotpink, 0 0 20px hotpink, 0 0 30px deeppink;
+      box-shadow: 0 0 10px hotpink, 0 0 20px hotpink, 0 0 30px deeppink;
+      border: 3px solid hotpink;
+      animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: hotpink; }
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .buttons button {
+      background: #222;
+      border: 2px solid #fff;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .buttons button:hover {
+      background: #555;
+      box-shadow: 0 0 10px #fff;
+    }
+    #playerContainer {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="message">
+    คือเค้ารักเธอมากเลยนะ เค้าทำให้เพราะรักมากจริงๆ ไม่ได้ง่ายเลย แต่ก็อยากทำให้ เค้าไม่เคยเหนื่อยเลยนะ ไม่เคยท้อที่ได้รักเธอเลยนะ ไม่ว่าเธออยู่ไหนเค้าก็จะไปหา รักของเค้าเค้าพร้อมจะไปหาตลอดอยู่แล้ว รักและคิดถึงนะคับ 23.03.2566
+  </div>
+  <div class="text">ยินดีต้อนรับนะคะ</div>
+  <div class="buttons">
+    <button onclick="playBoth('https://www.youtube.com/embed/4Ef7jOl8Fw4?autoplay=1', 'ไม่ให้ไป.mp3')">ไม่ให้ไป - Three Man Down</button>
+    <button onclick="playBoth('https://www.youtube.com/embed/F8ROXKriyv0?autoplay=1', 'yt1z.net - Plantpot - ให้ฉันเป็นวันที่ดีของเธอ OFFICIAL MV (320 KBps).mp3')">ให้ฉันเป็นวันที่ดีของเธอ - Plantpot</button>
+    <button onclick="playBoth('https://www.youtube.com/embed/-WjqJ_oZ0p0?autoplay=1', 'yt1z.net - ขาดเธอไม่ได้ - POTATO (Ost.หัวใจรักพิทักษ์เธอ)「Official MV」 (320 KBps).mp3')">ขาดเธอไม่ได้ - POTATO</button>
+    <button onclick="playBoth('https://www.youtube.com/embed/_-sQSqou2ck?autoplay=1', 'yt1z.net - The Parkinson - แค่นี้...พอ (Present) (OFFICIAL MV) (320 KBps).mp3')">The Parkinson - แค่นี้...พอ (Present)</button>
+    <button onclick="playBoth('https://www.youtube.com/embed/ks7p6DA0dKk?autoplay=1', 'yt1z.net - Three Man Down - ข้างกัน (City) Feat.ออม TELEx TELEXs「Official Video」 (320 KBps).mp3')">Three Man Down - ข้างกัน</button>
+  </div>
+
+  <div id="playerContainer"></div>
+  <audio id="audioPlayer" controls style="display:none;"></audio>
+
+  <script>
+    function playSound(src) {
+      const audio = document.getElementById('audioPlayer');
+      audio.src = src;
+      audio.style.display = 'block';
+      audio.play();
+    }
+
+    function playYoutube(url) {
+      document.getElementById('playerContainer').innerHTML = `
+        <iframe width="560" height="315" src="${url}" 
+        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    }
+
+    function playBoth(videoUrl, audioSrc) {
+      playYoutube(videoUrl);
+      playSound(audioSrc);
+    }
+  </script>
+</body>
+</html>
